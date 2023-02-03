@@ -1,19 +1,23 @@
 {
-  "name": "culler",
-  "version": "0.0.1",
-  "description": "Blazingly tiny, 0 dependency package for generating a color.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mo-shawa/culler.git"
-  },
-  "author": "Mahmoud El-Shawa",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mo-shawa/culler/issues"
-  },
-  "homepage": "https://github.com/mo-shawa/culler#readme"
+	"name": "culler",
+	"version": "0.0.1",
+	"description": "Blazingly tiny, 0 dependency package for generating a color.",
+	"main": "index.js",
+	"scripts": {
+		"build": "tsup index.ts --format cjs, esm --dts"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/mo-shawa/culler.git"
+	},
+	"author": "Mahmoud El-Shawa",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/mo-shawa/culler/issues"
+	},
+	"homepage": "https://github.com/mo-shawa/culler#readme",
+	"dependencies": {
+		"tsup": "^6.5.0",
+		"typescript": "^4.9.5"
+	}
 }
