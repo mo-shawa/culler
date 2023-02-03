@@ -11,5 +11,5 @@ export function genRGBA() {
 
 function genNumBetween(min: number, max: number, isFloat = false): number {
 	const num = Math.random() * max - min
-	return isFloat ? num : Math.floor(num) // might wanna reduce to 2 decimal places
+	return isFloat ? num : Math.floor(num)
 }
