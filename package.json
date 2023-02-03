@@ -2,9 +2,12 @@
 	"name": "culler",
 	"version": "0.0.1",
 	"description": "Blazingly tiny, 0 dependency package for generating a color.",
-	"main": "index.js",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.ts",
 	"scripts": {
-		"build": "tsup index.ts --format cjs, esm --dts"
+		"build": "tsup index.ts --format cjs,esm --dts",
+		"lint": "tsc"
 	},
 	"repository": {
 		"type": "git",
