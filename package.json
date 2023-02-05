@@ -12,7 +12,8 @@
 		"build": "tsup index.ts --format cjs,esm --dts",
 		"lint": "tsc",
 		"dry-run": "npm run build && npm publish --dry-run",
-		"prepublish": "tsc && npm run build"
+		"prepublish": "tsc && npm run build",
+		"publish": "npm publish"
 	},
 	"repository": {
 		"type": "git",
