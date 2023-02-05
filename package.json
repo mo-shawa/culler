@@ -6,11 +6,13 @@
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.ts",
 	"files": [
-		"lib/**/*"
+		"dist/**/*"
 	],
 	"scripts": {
 		"build": "tsup index.ts --format cjs,esm --dts",
-		"lint": "tsc"
+		"lint": "tsc",
+		"dry-run": "npm run build && npm publish --dry-run",
+		"prepublish": "tsc && npm run build"
 	},
 	"repository": {
 		"type": "git",
