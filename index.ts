@@ -18,12 +18,19 @@ type ApplyQuery =
 	| NodeListOf<Element>
 	| string
 
+type genNumOptions = {
+	min?: number
+	max?: number
+	isInt?: boolean
+	clamp?: number
+}
+
 export function genRGBA(): RGBA {
 	const [r, g, b, a] = [
-		genNumBetween(0, 255),
-		genNumBetween(0, 255),
-		genNumBetween(0, 255),
-		genNumBetween(0, 1, true),
+		genNumBetween({ max: 255, isInt: true }),
+		genNumBetween({ max: 255, isInt: true }),
+		genNumBetween({ max: 255, isInt: true }),
+		genNumBetween({ isInt: false }),
 	]
 
 	return `rgba(${r}, ${g}, ${b}, ${a})`
@@ -46,7 +53,7 @@ export function apply(query: ApplyQuery, color: Color): void {
 			return
 		}
 
-		return console.warn("Query did not yield any results 🤷‍♂️")
+		return console.warn("Query did not yield any results")
 	}
 
 	if ("forEach" in query) {
@@ -63,10 +70,29 @@ export function apply(query: ApplyQuery, color: Color): void {
 		return
 	}
 
-	return console.warn("Something unexpected happened 😳")
+	return console.warn(`Something unexpected happened.
+	args(query: ${query}, color: ${color})`)
 }
 
-function genNumBetween(min: number, max: number, isFloat = false): number {
-	const num = Math.random() * max - min
-	return isFloat ? num : Math.floor(num)
+function genNumBetween(userOptions: genNumOptions = {}): number {
+	const defaultOptions: genNumOptions = {
+		min: 0,
+		max: 1,
+		isInt: false,
+		clamp: 2,
+	}
+
+	const options: genNumOptions = Object.assign(defaultOptions, userOptions)
+
+	const { min, max, isInt, clamp } = options
+
+	let num = Math.random() * max! - min!
+
+	if (isInt) num = Math.floor(num)
+
+	if (!isInt && clamp !== undefined) num = parseFloat(num.toFixed(clamp))
+
+	return num
 }
+
+console.log(genNumBetween({ clamp: 15 }))

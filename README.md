@@ -108,6 +108,7 @@ Usage of this tool for attacking targets without prior mutual consent is illegal
 
 - [x] Generate random `RGBA` string
 - [x] Apply Color value to query
-- [ ] Figure out and apply reasonable decimal clamp for float values (alpha)
+- [x] Figure out and apply reasonable decimal clamp for float values (alpha)
+  - Default float clamp is to 2 decimal places
 - [ ] Refactor `genRGBA` to `gen`, which will accept options, constraints etc
 - [ ] Conversion between formats (`rbga` to `HSL`, `Hex` etc)
