@@ -1,3 +1,14 @@
+export default {
+	genRGBA,
+	apply,
+}
+
+type RGB = `rgb(${number}, ${number}, ${number})`
+type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`
+type HEX = `#${string}`
+
+type Color = RGB | RGBA | HEX
+
 type ApplyQuery =
 	| HTMLElement
 	| HTMLCollection
@@ -5,7 +16,7 @@ type ApplyQuery =
 	| NodeListOf<Element>
 	| string
 
-export function genRGBA(): string {
+export function genRGBA(): RGBA {
 	const [r, g, b, a] = [
 		genNumBetween(0, 255),
 		genNumBetween(0, 255),
@@ -16,7 +27,7 @@ export function genRGBA(): string {
 	return `rgba(${r}, ${g}, ${b}, ${a})`
 }
 
-export function apply(query: ApplyQuery, color: string): void {
+export function apply(query: ApplyQuery, color: Color): void {
 	if (typeof query === "string") {
 		const result = document.querySelectorAll<HTMLElement>(query)
 
@@ -33,7 +44,7 @@ export function apply(query: ApplyQuery, color: string): void {
 			return
 		}
 
-		return console.warn("Query did not yield any results")
+		return console.warn("Query did not yield any results 🤷‍♂️")
 	}
 
 	if ("forEach" in query) {
@@ -42,11 +53,15 @@ export function apply(query: ApplyQuery, color: string): void {
 		elements.forEach((element) => {
 			element.style.backgroundColor = color
 		})
+		return
 	}
 
 	if (query instanceof HTMLElement) {
 		query.style.backgroundColor = color
+		return
 	}
+
+	return console.warn("Something unexpected happened 😳")
 }
 
 function genNumBetween(min: number, max: number, isFloat = false): number {
