@@ -1,3 +1,5 @@
+import { CSSNamedColor } from "css-color-types"
+
 export default {
 	genRGBA,
 	apply,
@@ -7,7 +9,7 @@ type RGB = `rgb(${number}, ${number}, ${number})`
 type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`
 type HEX = `#${string}`
 
-type Color = RGB | RGBA | HEX
+type Color = RGB | RGBA | HEX | CSSNamedColor
 
 type ApplyQuery =
 	| HTMLElement

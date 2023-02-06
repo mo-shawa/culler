@@ -1,7 +1,7 @@
 {
 	"name": "culler",
 	"version": "0.1.0",
-	"description": "Blazingly tiny, 0 dependency package for generating a color.",
+	"description": "Blazingly tiny, 0 dependency package color utility library.",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.ts",
@@ -11,10 +11,7 @@
 	"scripts": {
 		"build": "tsup index.ts --format cjs,esm --dts",
 		"lint": "tsc",
-		"dry-run": "npm run build && npm publish --dry-run",
-		"prepublishOnly": "tsc && npm run build",
-		"changeset-init": "changeset init",
-		"changeset": "changeset"
+		"dry-run": "npm run build && npm publish --dry-run"
 	},
 	"repository": {
 		"type": "git",
@@ -28,6 +25,7 @@
 	"homepage": "https://github.com/mo-shawa/culler#readme",
 	"devDependencies": {
 		"@changesets/cli": "^2.26.0",
+		"css-color-types": "^0.3.0",
 		"tsup": "^6.5.0",
 		"typescript": "^4.9.5"
 	}
