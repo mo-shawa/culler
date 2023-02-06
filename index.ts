@@ -1,4 +1,9 @@
-type ApplyQuery = HTMLElement | HTMLCollection | NodeList | string
+type ApplyQuery =
+	| HTMLElement
+	| HTMLCollection
+	| NodeList
+	| NodeListOf<Element>
+	| string
 
 export function genRGBA(): string {
 	const [r, g, b, a] = [
@@ -11,7 +16,7 @@ export function genRGBA(): string {
 	return `rgba(${r}, ${g}, ${b}, ${a})`
 }
 
-export function apply(color: string, query: ApplyQuery): void {
+export function apply(query: ApplyQuery, color: string): void {
 	if (typeof query === "string") {
 		const result = document.querySelectorAll<HTMLElement>(query)
 
@@ -30,12 +35,21 @@ export function apply(color: string, query: ApplyQuery): void {
 
 		return console.warn("Query did not yield any results")
 	}
+
+	if ("forEach" in query) {
+		const elements = query as NodeListOf<HTMLElement>
+
+		elements.forEach((element) => {
+			element.style.backgroundColor = color
+		})
+	}
+
+	if (query instanceof HTMLElement) {
+		query.style.backgroundColor = color
+	}
 }
 
 function genNumBetween(min: number, max: number, isFloat = false): number {
 	const num = Math.random() * max - min
 	return isFloat ? num : Math.floor(num)
 }
-
-document.querySelector(".isaddress")
-const test: ApplyQuery = ""
