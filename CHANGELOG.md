@@ -1,5 +1,11 @@
 # culler
 
+## 0.2.1
+
+### Patch Changes
+
+- Update readme + export genOptions type
+
 ## 0.2.0
 
 ### Minor Changes

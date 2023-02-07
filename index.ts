@@ -2,7 +2,6 @@ import { CSSNamedColor } from "css-color-types"
 
 export default {
 	gen,
-	genRGBA,
 	apply,
 }
 
@@ -16,7 +15,7 @@ type ColorKeys = {
 	rgb: RGB
 	rgba: RGBA
 	hex: HEX
-	named: CSSNamedColor
+	// named: CSSNamedColor
 }
 
 type ApplyQuery =
@@ -33,7 +32,7 @@ type genNumOptions = {
 	clamp?: number
 }
 
-type genOptions = {
+export type genOptions = {
 	type?: keyof ColorKeys
 	alpha?: boolean
 	minR?: number
@@ -79,19 +78,6 @@ export function gen(userOptions: genOptions = {}): Color {
 	}
 
 	return `rgb(${r}, ${g}, ${b})`
-}
-
-console.log(gen())
-
-export function genRGBA(): RGBA {
-	const [r, g, b, a] = [
-		genNumBetween({ max: 255, isInt: true }),
-		genNumBetween({ max: 255, isInt: true }),
-		genNumBetween({ max: 255, isInt: true }),
-		genNumBetween({ isInt: false }),
-	]
-
-	return `rgba(${r}, ${g}, ${b}, ${a})`
 }
 
 export function apply(query: ApplyQuery, color: Color): void {

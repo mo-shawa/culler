@@ -7,7 +7,7 @@ NOTE: `culler` is in early active development, and will see many breaking change
 ### Features
 
 - `culler` currently only serves ~~one purpose~~ two purposes:
-  - Generate a random `RGBA` string using `genRGBA()`
+  - Generate a random `rgb`, `rgba`, or `hex` color string using `gen()`
   - Provide a clean syntax to apply a color to a CSS selector string, HTML Element, or an iterable containing HTML Elements.
 - It's TINY. This library is `significantly` smaller than 1 GB 🔥
 
@@ -39,7 +39,7 @@ const culler = require("culler")
 import culler from "culler"
 
 // Preference: you can also destructure the imports
-import { genRGBA, apply } from "culler"
+import { gen, apply } from "culler"
 ```
 
 #### Syntax
@@ -47,7 +47,7 @@ import { genRGBA, apply } from "culler"
 ```ts
 culler.apply(query: ApplyQuery, color: Color)
 
-culler.genRGBA() // no options implemented as of 0.1.0
+culler.gen(userOptions: genOptions)
 
 type ApplyQuery =
 	| HTMLElement
@@ -57,6 +57,18 @@ type ApplyQuery =
 	| string // CSS selector string
 
 type Color = RGB | RGBA | HEX | CSSNamedColor
+
+type genOptions = {
+	type?: "rgb" | "rgba" | "hex"  // type of color string generated   - default: rgba
+	alpha?: boolean // Allow transparency                              - default: true
+	minR?: number   // Minimum value to generate for the red channel   - default: 0
+	maxR?: number   // Maximum value to generate for the red channel   - default: 255
+	minG?: number	// Minimum value to generate for the green channel - default: 0
+	maxG?: number	// Maximum value to generate for the green channel - default: 255
+	minB?: number	// Minimum value to generate for the blue channel  - default: 0
+	maxB?: number	// Maximum value to generate for the blue channel  - default: 255
+}
+
 ```
 
 ## Examples
@@ -73,27 +85,40 @@ const element = document.getElementbyId("my-id")
 culler.apply(element, "#FF00FF") // element is now purple
 
 // Using a CSS selector string
-culler.apply("ul > li:nth-child(3)", "aliceblue") // Every third li descendant of a ul has their background-color property set to aliceblue
+culler.apply("ul > li:nth-child(3)", "aliceblue")
+// Every third li descendant of a ul has their background-color property set to aliceblue
 ```
 
-### `genRGBA`
+### `gen`
 
 ```ts
-const randomColor = genRGBA() // rgba(22, 118, 117, 0.75)
-const anotherColor = genRGBA() // rgba(137, 129, 49, 0.49)
+const randomColor = culler.gen() // rgba(22, 118, 117, 0.75)
+// gen accepts an options object. If it is omitted, it will generate a random rgba string
+
+const hexColor = culler.gen({ type: "hex" }) // #eb634a
+// The full range of color is enabled by default
+
+// This can be changed by clamping the maximum and minimum
+// values for each color channel
+const greenishColor = culler.gen({ type: "rgb", minG: 255 })
+// Generates a green-dominant rgb color every time
+
+// Conversely, you could set the maxG value to 0 to generate colors
+// with no green tint to them whatsoever
+const notGreenAtAll = culler.gen({ maxG: 0 }) // note that you can omit type, which will default to rgba
 ```
 
 ### Extra examples
 
 ```ts
 // Randomize color of element(s)
-// (it's nice to destructure the exports in these and similar cases)
-apply(element, genRGBA())
+// (It's nice to destructure the exports in these and similar cases)
+apply(element, gen())
 
 // Independently randomize colors of a Nodelist (each having a unique random color)
 const elements = document.querySelectorAll("div.my-class")
 
-elements.forEach((el) => apply(el, genRGBA()))
+elements.forEach((el) => apply(el, gen()))
 ```
 
 ### Troubleshooting / Contact
@@ -110,5 +135,5 @@ Usage of this tool for attacking targets without prior mutual consent is illegal
 - [x] Apply Color value to query
 - [x] Figure out and apply reasonable decimal clamp for float values (alpha)
   - Default float clamp is to 2 decimal places
-- [ ] Refactor `genRGBA` to `gen`, which will accept options, constraints etc
+- [x] Refactor `genRGBA` to `gen`, which will accept options, constraints etc
 - [ ] Conversion between formats (`rbga` to `HSL`, `Hex` etc)
