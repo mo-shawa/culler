@@ -1,5 +1,17 @@
 # culler
 
+## 0.2.0
+
+### Minor Changes
+
+- gen has functionality to generate a random rgb, rgba or hex value, and accepts options allowing the user to set the min and max values of any color channel, as well as enable or disable transparency
+- culler.genRGBA has been removed. using culler.gen wihout specifying options works identically to genRGBA
+
+### Patch Changes
+
+- 02fc229: Add `gen` function, supports formats rgb and rgba, and value clamp options
+- Narrow gen return type to Color
+
 ## 0.1.0
 
 ### Minor Changes

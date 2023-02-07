@@ -35,7 +35,7 @@ type genNumOptions = {
 
 type genOptions = {
 	type?: keyof ColorKeys
-	opacity?: boolean
+	alpha?: boolean
 	minR?: number
 	maxR?: number
 	minG?: number
@@ -53,39 +53,35 @@ export function gen(userOptions: genOptions = {}): Color {
 		maxR: 255,
 		maxG: 255,
 		maxB: 255,
-		opacity: false,
+		alpha: true,
 	}
 
 	const options: genOptions = Object.assign(defaultOptions, userOptions)
 
-	const { type, minR, minG, minB, maxR, maxG, maxB, opacity } = options
+	const { type, minR, minG, minB, maxR, maxG, maxB, alpha } = options
 
-	if (type === "rgb") {
-		const [r, g, b] = [
-			genNumBetween({ min: minR, max: maxR, isInt: true }),
-			genNumBetween({ min: minG, max: maxG, isInt: true }),
-			genNumBetween({ min: minB, max: maxB, isInt: true }),
-		]
+	const [r, g, b] = [
+		genNumBetween({ min: minR, max: maxR, isInt: true }),
+		genNumBetween({ min: minG, max: maxG, isInt: true }),
+		genNumBetween({ min: minB, max: maxB, isInt: true }),
+	]
 
-		return `rgb(${r}, ${g}, ${b})`
-	}
+	if (type === "rgb") return `rgb(${r}, ${g}, ${b})`
 
 	if (type === "rgba") {
-		const [r, g, b, a] = [
-			genNumBetween({ min: minR, max: maxR, isInt: true }),
-			genNumBetween({ min: minG, max: maxG, isInt: true }),
-			genNumBetween({ min: minB, max: maxB, isInt: true }),
-			opacity ? genNumBetween({ isInt: false }) : 1,
-		]
-
+		const a = alpha ? genNumBetween({ isInt: false }) : 1
 		return `rgba(${r}, ${g}, ${b}, ${a})`
 	}
 
 	if (type === "hex") {
+		const [hexR, hexG, hexB] = [r.toString(16), g.toString(16), b.toString(16)]
+		return `#${hexR}${hexG}${hexB}`
 	}
 
-	return "#"
+	return `rgb(${r}, ${g}, ${b})`
 }
+
+console.log(gen())
 
 export function genRGBA(): RGBA {
 	const [r, g, b, a] = [
@@ -148,7 +144,7 @@ function genNumBetween(userOptions: genNumOptions = {}): number {
 
 	const { min, max, isInt, clamp } = options
 
-	let num = Math.random() * (max! - min! + 1) + min!
+	let num = Math.random() * (max! - min!) + min!
 
 	if (isInt) num = Math.floor(num)
 
