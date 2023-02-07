@@ -1,5 +1,11 @@
 # culler
 
+## 0.2.6
+
+### Patch Changes
+
+- Undo fix nonexistent bug, expose genNum utility function
+
 ## 0.2.5
 
 ### Patch Changes
