@@ -41,7 +41,10 @@ export type genOptions = {
 	maxG?: number
 	minB?: number
 	maxB?: number
+	setA?: number
 }
+
+console.log(gen())
 
 export function gen(userOptions: genOptions = {}): Color {
 	const defaultOptions: genOptions = {
@@ -57,7 +60,9 @@ export function gen(userOptions: genOptions = {}): Color {
 
 	const options: genOptions = Object.assign(defaultOptions, userOptions)
 
-	const { type, minR, minG, minB, maxR, maxG, maxB, alpha } = options
+	console.log(options)
+
+	const { type, minR, minG, minB, maxR, maxG, maxB, alpha, setA } = options
 
 	const [r, g, b] = [
 		genNumBetween({ min: minR, max: maxR, isInt: true }),
@@ -68,7 +73,7 @@ export function gen(userOptions: genOptions = {}): Color {
 	if (type === "rgb") return `rgb(${r}, ${g}, ${b})`
 
 	if (type === "rgba") {
-		const a = alpha ? genNumBetween({ isInt: false }) : 1
+		const a = setA || (alpha ? genNumBetween({ isInt: false }) : 1)
 		return `rgba(${r}, ${g}, ${b}, ${a})`
 	}
 

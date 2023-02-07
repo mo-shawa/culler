@@ -1,5 +1,11 @@
 # culler
 
+## 0.2.2
+
+### Patch Changes
+
+- allow setting explicit alpha in gen()
+
 ## 0.2.1
 
 ### Patch Changes
