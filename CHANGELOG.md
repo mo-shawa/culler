@@ -1,5 +1,11 @@
 # culler
 
+## 0.2.5
+
+### Patch Changes
+
+- remove destructuring aliasing, suspect root of bug
+
 ## 0.2.4
 
 ### Patch Changes
