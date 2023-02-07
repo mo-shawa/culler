@@ -1,5 +1,12 @@
 # culler
 
+## 0.2.7
+
+### Patch Changes
+
+- forgot to save index.ts lol
+- add genNum to default export too
+
 ## 0.2.6
 
 ### Patch Changes

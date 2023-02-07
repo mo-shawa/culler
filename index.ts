@@ -3,6 +3,7 @@ import { CSSNamedColor } from "css-color-types"
 export default {
 	gen,
 	apply,
+	genNum,
 }
 
 type RGB = `rgb(${number}, ${number}, ${number})`
@@ -77,15 +78,15 @@ export function gen(userOptions: genOptions = {}): Color {
 	} = options
 
 	const [r, g, b] = [
-		setR || genNumBetween({ min: minR, max: maxR, isInt: true }),
-		setG || genNumBetween({ min: minG, max: maxG, isInt: true }),
-		setB || genNumBetween({ min: minB, max: maxB, isInt: true }),
+		setR || genNum({ min: minR, max: maxR, isInt: true }),
+		setG || genNum({ min: minG, max: maxG, isInt: true }),
+		setB || genNum({ min: minB, max: maxB, isInt: true }),
 	]
 
 	if (type === "rgb") return `rgb(${r}, ${g}, ${b})`
 
 	if (type === "rgba") {
-		const a = setA || (alpha ? genNumBetween({ isInt: false }) : 1)
+		const a = setA || (alpha ? genNum({ isInt: false }) : 1)
 		return `rgba(${r}, ${g}, ${b}, ${a})`
 	}
 
@@ -135,7 +136,7 @@ export function apply(query: ApplyQuery, color: Color): void {
 	args(query: ${query}, color: ${color})`)
 }
 
-function genNumBetween(userOptions: genNumOptions = {}): number {
+export function genNum(userOptions: genNumOptions = {}): number {
 	const defaultOptions: genNumOptions = {
 		min: 0,
 		max: 1,
