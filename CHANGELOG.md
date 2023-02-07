@@ -1,5 +1,11 @@
 # culler
 
+## 0.2.4
+
+### Patch Changes
+
+- update for npm
+
 ## 0.2.3
 
 ### Patch Changes
