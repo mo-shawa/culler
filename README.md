@@ -67,7 +67,10 @@ type genOptions = {
 	maxG?: number	// Maximum value to generate for the green channel - default: 255
 	minB?: number	// Minimum value to generate for the blue channel  - default: 0
 	maxB?: number	// Maximum value to generate for the blue channel  - default: 255
-	setA?: number   // Explicitly set the value for the alpha channel  - default: undefined
+	r?: number   // Explicitly set the value for the red channel    - default: undefined
+	g?: number   // Explicitly set the value for the blue channel   - default: undefined
+	b?: number   // Explicitly set the value for the green channel  - default: undefined
+	a?: number   // Explicitly set the value for the alpha channel  - default: undefined
 }
 
 ```
