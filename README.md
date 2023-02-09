@@ -87,7 +87,7 @@ type genNumOptions = {
 	min?: number      // minimum number                                - default: 0
 	max?: number      // maximum number                                - default: 1
 	isInt?: boolean   // false for float, true for int                 - default: false
-	clamp?: number    // clamp num to this many decimal places         - default: 2
+	clamp?: number    // clamp num to this many decimal places (0-16)  - default: 2
 }
 
 ```
@@ -132,6 +132,23 @@ const notGreenAtAll = culler.gen({ g: 0 }) // note that you can omit type,
 // which will default to rgba
 ```
 
+### `genNum`
+
+```ts
+// culler uses genNum under the hood and ships with 
+// the code anyway, so I decided to make it available
+// as a small utility to users
+
+const floatBetween0and1 = culler.genNum()
+// default behaviour behaves like Math.random()
+
+// but easily customizable:
+const intBetween66and942 = culler.genNum({min: 66, max: 942, isInt: true})
+
+// You can also clamp the decimal places when generating floats:
+const floatTo5DecimalPlaces = culler.genNum({clamp: 5})
+```
+
 ### Extra examples
 
 ```ts
@@ -156,18 +173,27 @@ Usage of this tool for attacking targets without prior mutual consent is illegal
 ### To-do
 
 - [x] Generate random `RGBA` string
-- [ ] Support for color formats
- - [ ] 
+- [x] Support for color formats
+	- [x] rgb
+	- [x] rgba
+	- [x] Hex
+ 		- [ ] Transparency 
+	- [ ] HSL/HSV
 - [x] Apply Color value to query
- - [ ] Option to stagger color application on iterables
- - [ ] Delay option
- - [ ] Fade/tween color option
+	- [x] Apply to HTML Element
+	- [x] Apply to CSS query
+	- [x] Apply to iterables 
+		- [ ] Option to stagger color application on iterables
+		- [ ] Delay option
+	- [ ] Fade/tween color option
 - [x] Figure out and apply reasonable decimal clamp for float values (alpha)
-  - [x] Default float clamp is to 2 decimal places
+ 	- [x] Default float clamp is to 2 decimal places
 - [x] Refactor `genRGBA` to `gen`, which will accept options, constraints etc
- - [x] Ability to clamp color between two values with `minR` and `maxR`, `minG` etc
- - [x] Ability to explicitly set a value for a channel with `r`, `g`, and `b`
- - [x] Allow or disable transparency for formats that support `alpha` channel (currently only rgba) 
+	- [x] Ability to clamp color between two values with `minR` and `maxR`, `minG` etc
+	- [x] Ability to explicitly set a value for a channel with `r`, `g`, and `b`
+	- [x] Allow or disable transparency for formats that support `alpha` channel
+		- [x] rgba
+		- [ ] Hex
 - [ ] Conversion between formats (`rbga` to `HSL`, `Hex` etc)
- - [ ] Respect `alpha` value when converting from `rgba` to `rgb`, for example 
+	- [ ] Respect `alpha` value when converting from `rgba` to `rgb`, for example 
 - [ ] Move usage, syntax etc. details out of readme into dedicated documentation
