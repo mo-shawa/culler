@@ -11,7 +11,7 @@ NOTE: `culler` is in early active development, and will see many breaking change
   - Provide a clean syntax to apply a color to a CSS selector string, HTML Element, or an iterable containing HTML Elements with `apply()`.
   - Expose utility function `genNum()`, so you don't have to google how to google how to generate a random integer between 0 and 100 again, you could just do this instead:
   ```ts
-  culler.genNum({ max: 100, isInt: true})
+  culler.genNum({ max: 100, isInt: true })
   ```
 - It's TINY. This library is `significantly` smaller than 1 GB 🔥
 
@@ -53,6 +53,8 @@ culler.apply(query: ApplyQuery, color: Color)
 
 culler.gen(userOptions: genOptions)
 
+culler.convert(color: Color, to: "rgb" | "rgba" | "hex")
+
 culler.genNum(userOptions: genNumOptions)
 
 /////////////
@@ -90,6 +92,11 @@ type genNumOptions = {
 	clamp?: number    // clamp num to this many decimal places (0-16)  - default: 2
 }
 
+type convertOptions = {
+	color: Color
+	to?: keyof ColorKeys
+}
+
 ```
 
 ## Examples
@@ -115,7 +122,7 @@ culler.apply("ul > li:nth-child(3)", "aliceblue")
 
 ```ts
 const randomColor = culler.gen() // rgba(22, 118, 117, 0.75)
-// gen accepts an options object 
+// gen accepts an options object
 // If object is omitted, it will generate a random rgba string
 
 const hexColor = culler.gen({ type: "hex" }) // #eb634a
@@ -128,14 +135,30 @@ const greenishColor = culler.gen({ type: "rgb", minG: 200 })
 
 // Conversely, you could explicitly set the `g` value to 0 to generate colors
 // with no green tint to them whatsoever
-const notGreenAtAll = culler.gen({ g: 0 }) // note that you can omit type, 
+const notGreenAtAll = culler.gen({ g: 0 }) // note that you can omit type,
 // which will default to rgba
+```
+
+### `convert`
+
+```ts
+// culler supports conversions between rgb, rgba, and hex
+const hex = culler.convert("rgba(13,35,55,0.7)", "hex")
+
+const rgb = culler.convert("#FF00FF", "rgb")
+
+// culler will preserve the effect of transparency
+// when converting from a transparent format to rgb
+
+const rgb_from_rgba = culler.convert("rgba(154, 25, 118, 0.35)", "rgb") // rgb(219, 174, 207)
+// the rgb color will be identical to
+// the rgba overlayed on a white background
 ```
 
 ### `genNum`
 
 ```ts
-// culler uses genNum under the hood and ships with 
+// culler uses genNum under the hood and ships with
 // the code anyway, so I decided to make it available
 // as a small utility to users
 
@@ -143,10 +166,10 @@ const floatBetween0and1 = culler.genNum()
 // default behaviour behaves like Math.random()
 
 // but easily customizable:
-const intBetween66and942 = culler.genNum({min: 66, max: 942, isInt: true})
+const intBetween66and942 = culler.genNum({ min: 66, max: 942, isInt: true })
 
 // You can also clamp the decimal places when generating floats:
-const floatTo5DecimalPlaces = culler.genNum({clamp: 5})
+const floatTo5DecimalPlaces = culler.genNum({ clamp: 5 })
 ```
 
 ### Extra examples
@@ -174,26 +197,26 @@ Usage of this tool for attacking targets without prior mutual consent is illegal
 
 - [x] Generate random `RGBA` string
 - [x] Support for color formats
-	- [x] rgb
-	- [x] rgba
-	- [x] Hex
- 		- [ ] Transparency 
-	- [ ] HSL/HSV
+  - [x] rgb
+  - [x] rgba
+  - [x] Hex
+    - [ ] Transparency
+  - [ ] HSL/HSV
 - [x] Apply Color value to query
-	- [x] Apply to HTML Element
-	- [x] Apply to CSS query
-	- [x] Apply to iterables 
-		- [ ] Option to stagger color application on iterables
-		- [ ] Delay option
-	- [ ] Fade/tween color option
+  - [x] Apply to HTML Element
+  - [x] Apply to CSS query
+  - [x] Apply to iterables
+    - [ ] Option to stagger color application on iterables
+    - [ ] Delay option
+  - [ ] Fade/tween color option
 - [x] Figure out and apply reasonable decimal clamp for float values (alpha)
- 	- [x] Default float clamp is to 2 decimal places
+  - [x] Default float clamp is to 2 decimal places
 - [x] Refactor `genRGBA` to `gen`, which will accept options, constraints etc
-	- [x] Ability to clamp color between two values with `minR` and `maxR`, `minG` etc
-	- [x] Ability to explicitly set a value for a channel with `r`, `g`, and `b`
-	- [x] Allow or disable transparency for formats that support `alpha` channel
-		- [x] rgba
-		- [ ] Hex
-- [ ] Conversion between formats (`rbga` to `HSL`, `Hex` etc)
-	- [ ] Respect `alpha` value when converting from `rgba` to `rgb`, for example 
+  - [x] Ability to clamp color between two values with `minR` and `maxR`, `minG` etc
+  - [x] Ability to explicitly set a value for a channel with `r`, `g`, and `b`
+  - [x] Allow or disable transparency for formats that support `alpha` channel
+    - [x] rgba
+    - [ ] Hex
+- [x] Conversion between formats (`rbga` to `HSL`, `Hex` etc)
+  - [x] Respect `alpha` value when converting from `rgba` to `rgb`, for example
 - [ ] Move usage, syntax etc. details out of readme into dedicated documentation

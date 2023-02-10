@@ -1,5 +1,14 @@
 # culler
 
+## 0.3.0
+
+### Minor Changes
+
+- - Add convert function
+    - supports rgb, rgba and hex
+    - preserves the effect of transparency when converting from a value with an alpha value to one that doesn't.
+      - (for example, if you convert a semi-transparent `rgba` to `rgb`, the `rgb` color will be effectively identical to the `rgba` overlayed on a white background )
+
 ## 0.2.7
 
 ### Patch Changes
