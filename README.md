@@ -1,19 +1,20 @@
 # culler
 
-`culler` is a tiny JavaScript Library that does everything you need it to do, if all you need it to do is generate an `RGBA` string 🎨
+`culler` is a color utility library that helps users create, manipulate, convert, and apply colors. `culler` is written in `TypeScript` and ships with full type safety, and maintains backward compatibility with commonJS imports.
 
 NOTE: `culler` is in early active development, and will see many breaking changes before version 1.0.0
 
 ### Features
 
-- `culler` currently only serves ~~one purpose~~ three purposes:
-  - Generate a random `rgb`, `rgba`, or `hex` color string using `gen()`
-  - Provide a clean syntax to apply a color to a CSS selector string, HTML Element, or an iterable containing HTML Elements with `apply()`.
-  - Expose utility function `genNum()`, so you don't have to google how to google how to generate a random integer between 0 and 100 again, you could just do this instead:
-  ```ts
-  culler.genNum({ max: 100, isInt: true })
-  ```
+- Generate a random `rgb`, `rgba`, or `hex` color string using `gen()`
+- Convert Color values between formats, including from semi-transparent to solid colors using `convert()`
+- Provide a clean syntax to apply a color to a CSS selector string, HTML Element, or an iterable containing HTML Elements with `apply()`
 - It's TINY. This library is `significantly` smaller than 1 GB 🔥
+- BONUS: Expose utility function `genNum()`, so you don't have to google how to google how to generate a random integer between 0 and 100 again, you could just do this instead:
+
+```ts
+culler.genNum({ max: 100, isInt: true })
+```
 
 ### Built with
 
@@ -43,7 +44,7 @@ const culler = require("culler")
 import culler from "culler"
 
 // Preference - you can also destructure the imports:
-import { gen, apply } from "culler"
+import { gen, apply, convert } from "culler"
 ```
 
 #### Syntax
@@ -68,10 +69,16 @@ type ApplyQuery =
 	| NodeListOf<Element>
 	| string // CSS selector string
 
+type RGB = `rgb(${number}, ${number}, ${number})`
+type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`
+type HEX = `#${string}`
+
 type Color = RGB | RGBA | HEX | CSSNamedColor
 
+type ColorKeys = "rgb" | "rgba" | "hex"
+
 type genOptions = {
-	type?: "rgb" | "rgba" | "hex"  // type of color string generated   - default: rgba
+	type?: ColorKeys  // type of color string generated   - default: rgba
 	alpha?: boolean // Allow transparency                              - default: true
 	minR?: number   // Minimum value to generate for the red channel   - default: 0
 	maxR?: number   // Maximum value to generate for the red channel   - default: 255
@@ -94,14 +101,14 @@ type genNumOptions = {
 
 type convertOptions = {
 	color: Color
-	to?: keyof ColorKeys
+	to?: ColorKeys
 }
 
 ```
 
 ## Examples
 
-### `apply`
+### `apply()`
 
 ```ts
 // Using a Nodelist:
@@ -118,7 +125,7 @@ culler.apply("ul > li:nth-child(3)", "aliceblue")
 // and sets their background-color property set to aliceblue
 ```
 
-### `gen`
+### `gen()`
 
 ```ts
 const randomColor = culler.gen() // rgba(22, 118, 117, 0.75)
@@ -139,23 +146,21 @@ const notGreenAtAll = culler.gen({ g: 0 }) // note that you can omit type,
 // which will default to rgba
 ```
 
-### `convert`
+### `convert()`
 
 ```ts
-// culler supports conversions between rgb, rgba, and hex
-const hex = culler.convert("rgba(13,35,55,0.7)", "hex")
+const hexFromRgba = culler.convert("rgba(13, 35, 55, 0.7)", "hex") // #0d2337b2
 
-const rgb = culler.convert("#FF00FF", "rgb")
+const rgbFromHex = culler.convert("#F8DE0F", "rgb") // rgb(248, 222, 15)
 
 // culler will preserve the effect of transparency
 // when converting from a transparent format to rgb
 
-const rgb_from_rgba = culler.convert("rgba(154, 25, 118, 0.35)", "rgb") // rgb(219, 174, 207)
-// the rgb color will be identical to
-// the rgba overlayed on a white background
+const rgbFromRgba = culler.convert("rgba(154, 25, 118, 0.35)", "rgb") // rgb(219, 174, 207)
+// the rgb color will be identical to the rgba overlayed on a white background
 ```
 
-### `genNum`
+### `genNum()`
 
 ```ts
 // culler uses genNum under the hood and ships with
@@ -163,7 +168,7 @@ const rgb_from_rgba = culler.convert("rgba(154, 25, 118, 0.35)", "rgb") // rgb(2
 // as a small utility to users
 
 const floatBetween0and1 = culler.genNum()
-// default behaviour behaves like Math.random()
+// default behaviour behaves like Math.random() => float between 0 and 1
 
 // but easily customizable:
 const intBetween66and942 = culler.genNum({ min: 66, max: 942, isInt: true })

@@ -1,5 +1,11 @@
 # culler
 
+## 0.3.1
+
+### Patch Changes
+
+- modularize source + update readme
+
 ## 0.3.0
 
 ### Minor Changes
