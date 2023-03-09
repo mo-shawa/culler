@@ -14,3 +14,5 @@ export default {
 	convert,
 	genNum,
 }
+
+console.log(gen({ r: 0 }))

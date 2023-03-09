@@ -30,10 +30,12 @@ export function gen(userOptions: genOptions = {}): Color {
 		a: setA,
 	} = options
 
+	console.log(setA, setB, setR)
+
 	const [r, g, b] = [
-		setR || genNum({ min: minR, max: maxR, isInt: true }),
-		setG || genNum({ min: minG, max: maxG, isInt: true }),
-		setB || genNum({ min: minB, max: maxB, isInt: true }),
+		setR !== undefined ? setR : genNum({ min: minR, max: maxR, isInt: true }),
+		setG !== undefined ? setG : genNum({ min: minG, max: maxG, isInt: true }),
+		setB !== undefined ? setB : genNum({ min: minB, max: maxB, isInt: true }),
 	]
 
 	if (type === "rgb") return `rgb(${r}, ${g}, ${b})`
