@@ -1,4 +1,4 @@
-import type { genNumOptions, Color, ColorKeys } from "./types/global.types"
+import type { genNumOptions, Color, ColorTypes } from "./types/global.types"
 
 export function genNum(userOptions: genNumOptions = {}): number {
 	const defaultOptions: genNumOptions = {
@@ -33,7 +33,7 @@ export function preserveTransparency(
 	return [r2, g2, b2]
 }
 
-export function getColorFormat(color: Color): keyof ColorKeys | void {
+export function getColorFormat(color: Color): ColorTypes | void {
 	if (color.indexOf("#") > -1) return "hex"
 	if (color.substring(0, 3).includes("rgb")) {
 		if (color.charAt(3) === "a") return "rgba"

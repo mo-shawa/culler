@@ -6,20 +6,15 @@ type HEX = `#${string}`
 
 export type Color = RGB | RGBA | HEX | CSSNamedColor
 
-export type ColorKeys = {
-	rgb: RGB
-	rgba: RGBA
-	hex: HEX
-	// named: CSSNamedColor
-}
+export type ColorTypes = "rgb" | "rgba" | "hex"
 
 export type convertOptions = {
 	color: Color
-	to?: keyof ColorKeys
+	to?: ColorTypes
 }
 
 export type genOptions = {
-	type?: keyof ColorKeys
+	type?: ColorTypes
 	alpha?: boolean
 	minR?: number
 	maxR?: number

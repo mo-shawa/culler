@@ -75,10 +75,10 @@ type HEX = `#${string}`
 
 type Color = RGB | RGBA | HEX | CSSNamedColor
 
-type ColorKeys = "rgb" | "rgba" | "hex"
+type ColorTypes = "rgb" | "rgba" | "hex"
 
 type genOptions = {
-	type?: ColorKeys  // type of color string generated   - default: rgba
+	type?: ColorTypes  // type of color string generated   - default: rgba
 	alpha?: boolean // Allow transparency                              - default: true
 	minR?: number   // Minimum value to generate for the red channel   - default: 0
 	maxR?: number   // Maximum value to generate for the red channel   - default: 255
@@ -101,7 +101,7 @@ type genNumOptions = {
 
 type convertOptions = {
 	color: Color
-	to?: ColorKeys
+	to?: ColorTypes
 }
 
 ```
@@ -205,7 +205,7 @@ Usage of this tool for attacking targets without prior mutual consent is illegal
   - [x] rgb
   - [x] rgba
   - [x] Hex
-    - [ ] Transparency
+    - [x] Transparency
   - [ ] HSL/HSV
 - [x] Apply Color value to query
   - [x] Apply to HTML Element

@@ -1,5 +1,11 @@
 # culler
 
+## 0.4.0
+
+### Minor Changes
+
+- Add support for hex transparency
+
 ## 0.3.2
 
 ### Patch Changes
