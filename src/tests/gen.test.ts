@@ -16,7 +16,7 @@ describe("gen", () => {
 		})
 	})
 
-	describe('given type:"hex"', () => {
+	describe('given {type:"hex"}', () => {
 		it("should return random valid hex string", () => {
 			const sut = culler.gen
 
