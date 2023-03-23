@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="None">
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title></title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/androidstudio.min.css">
+        <link href="css/extra.css" rel="stylesheet">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/bash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/javascript.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/typescript.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body class="homepage">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="."></a>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#culler" class="nav-link">culler</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#getting-started" class="nav-link">Getting started</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#installation" class="nav-link">Installation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#usage" class="nav-link">Usage</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#apply-syntax" class="nav-link">apply() Syntax</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#gen-syntax" class="nav-link">gen() Syntax</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#convert-syntax" class="nav-link">convert() Syntax</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#gennum-syntax" class="nav-link">genNum() Syntax</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#type-definitions" class="nav-link">Type Definitions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="culler">culler</h1>
+<p><code>culler</code> is a utility library designed to create, manipulate, convert, and apply colors. It supports RGB, RGBA, and HEX color formats and is written in TypeScript, providing extensive type safety. Additionally, the library ensures integration into any Node.js project by maintaining backward compatibility with CommonJS imports.</p>
+<p><strong>Features</strong></p>
+<ul>
+<li>Generate random RGB, RGBA, and HEX color strings.</li>
+<li>Convert color values between formats, including semi-transparent and solid colors.</li>
+<li>Apply colors to a CSS selector string, HTML element, or an iterable containing HTML Elements.</li>
+<li>Includes a random number generator with configurable parameters.</li>
+<li>Designed to be lightweight and efficient.</li>
+</ul>
+<p><br></p>
+<h2 id="getting-started">Getting started</h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Node.js and NPM are required to install <code>culler</code>.</p>
+</div>
+<h3 id="installation">Installation</h3>
+<p>Run the following command to install <code>culler</code> using <code>npm</code>:</p>
+<pre><code class="language-bash">npm install culler
+</code></pre>
+<h3 id="usage">Usage</h3>
+<p><strong>CommonJS (CJS)</strong></p>
+<pre><code class="language-javascript">const culler = require(&quot;culler&quot;)
+</code></pre>
+<p><strong>ECMAScript (ESM)</strong></p>
+<pre><code class="language-javascript">import culler from &quot;culler&quot;
+</code></pre>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Destructure the imports as shown in the following sample.</p>
+</div>
+<pre><code>import {gen, apply, convert} from &quot;culler&quot;
+</code></pre>
+<p><br></p>
+<h3 id="apply-syntax"><code>apply()</code> Syntax</h3>
+<p>Specify the element and color value to apply:</p>
+<pre><code class="language-javascript">culler.apply(ApplyQuery, color: Color)
+</code></pre>
+<h4 id="apply-samples"><code>apply()</code> Samples</h4>
+<p>Apply color to a Nodelist:</p>
+<pre><code class="language-javascript">const cardEls = document.querySelectorAll(&quot;.card&quot;)
+culler.apply(cardEls, &quot;rgb(25, 12, 92)&quot;)
+</code></pre>
+<p>Apply color to a cached element:</p>
+<pre><code class="language-javascript">const element = document.getElementbyId(&quot;elementID&quot;)
+culler.apply(element, &quot;#FF00FF&quot;)
+</code></pre>
+<p>Apply color using a CSS selector:</p>
+<pre><code class="language-javascript">culler.apply(&quot;ul &gt; li:nth-child(3)&quot;, &quot;aliceblue&quot;)
+// Selects every third `li` in `ul` and sets the `background-color` property to aliceblue.
+</code></pre>
+<p><br></p>
+<h3 id="gen-syntax"><code>gen()</code> Syntax</h3>
+<p>Specify the color format (<code>rgb</code>, <code>rgba</code>, or <code>hex</code>) to generate random colors. Enable transparency by setting <code>alpha</code> to <code>true</code>. To limit the range of colors, include the miniumum and maximum values to generate for the red, green, and blue channels. Alternatively, define specific colors by including the exact values of the red, green, blue, and alpha channels.</p>
+<pre><code class="language-javascript">culler.gen(userOptions: genOptions)
+</code></pre>
+<h4 id="gen-samples"><code>gen()</code> Samples</h4>
+<p>Generate random colors:</p>
+<pre><code class="language-javascript">const randomColor = culler.gen()
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The default output without specifying options is a random <code>rgba</code> string.</p>
+</div>
+<p>Generate random HEX colors:</p>
+<pre><code class="language-javascript">const hexColor = culler.gen({ type: &quot;hex&quot; })
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The full range of color is enabled by default unless specified otherwise.</p>
+</div>
+<p>Generate colors within specified limits:</p>
+<pre><code class="language-javascript">const greenishColor = culler.gen({ type: &quot;rgb&quot;, minG: 200 })
+// Generates a green-dominant rgb color every time.
+</code></pre>
+<p>Generate specific colors:</p>
+<pre><code class="language-javascript">const notGreenAtAll = culler.gen({ g: 0 })
+</code></pre>
+<p><br></p>
+<h3 id="convert-syntax"><code>convert()</code> Syntax</h3>
+<p>Specify the color type and value to convert colors between <code>rgb</code>, <code>rgba</code>, and <code>hex</code>.</p>
+<pre><code class="language-javascript">culler.convert(color: Color, to: &quot;rgb&quot; | &quot;rgba&quot; | &quot;hex&quot;)
+</code></pre>
+<h4 id="convert-samples"><code>convert()</code> Samples</h4>
+<p><code>rgba</code> to <code>hex</code>:</p>
+<pre><code class="language-javascript">const rgbaToHex = culler.convert(&quot;rgba(13, 35, 55, 0.7)&quot;, &quot;hex&quot;)
+// #0d2337b2
+</code></pre>
+<p><code>hex</code> to <code>rgb</code>:</p>
+<pre><code class="language-javascript">const hexToRgb = culler.convert(&quot;#F8DE0F&quot;, &quot;rgb&quot;) 
+// rgb(248, 222, 15)
+</code></pre>
+<p><code>rgba</code> to <code>rgb</code>:</p>
+<pre><code class="language-javascript">const rgbaToRgb = culler.convert(&quot;rgba(154, 25, 118, 0.35)&quot;, &quot;rgb&quot;) 
+// rgb(219, 174, 207)
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Converting <code>rgba</code> to <code>rgb</code> will result in an identical color overlayed on a white background.</p>
+</div>
+<p><br></p>
+<h3 id="gennum-syntax"><code>genNum()</code> Syntax</h3>
+<p>Culler includes a utility to randomly generate numbers.</p>
+<pre><code class="language-javascript">culler.genNum(userOptions: genNumOptions)
+</code></pre>
+<h4 id="gennum-samples"><code>genNum()</code> Samples</h4>
+<p>Generate a random number between 0 and 1:</p>
+<pre><code class="language-javascript">const floatBetween0and1 = culler.genNum()
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The default behavior without specifying options is similar to  <code>Math.random()</code> and will generate a float between 0 and 1.</p>
+</div>
+<p>Generate random numbers within specified limits:</p>
+<pre><code class="language-javascript">const intBetween66and942 = culler.genNum({ min: 66, max: 942, isInt: true })
+</code></pre>
+<p>Limit the decimal places when generating floats:</p>
+<pre><code class="language-javascript">const floatTo5DecimalPlaces = culler.genNum({ clamp: 5 })
+</code></pre>
+<p><br></p>
+<h2 id="type-definitions">Type Definitions</h2>
+<pre><code class="language-typescript">type ApplyQuery =
+    | HTMLElement
+    | HTMLCollection
+    | NodeList
+    | NodeListOf&lt;Element&gt;
+    | string // CSS selector string
+
+type RGB = `rgb(${number}, ${number}, ${number})`
+type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`
+type HEX = `#${string}`
+
+type Color = RGB | RGBA | HEX | CSSNamedColor
+
+type ColorTypes = &quot;rgb&quot; | &quot;rgba&quot; | &quot;hex&quot;
+
+type genOptions = {
+    type?: ColorTypes  // type of color string generated   - default: rgba
+    alpha?: boolean // Allow transparency                              - default: true
+    minR?: number   // Minimum value to generate for the red channel   - default: 0
+    maxR?: number   // Maximum value to generate for the red channel   - default: 255
+    minG?: number   // Minimum value to generate for the green channel - default: 0
+    maxG?: number   // Maximum value to generate for the green channel - default: 255
+    minB?: number   // Minimum value to generate for the blue channel  - default: 0
+    maxB?: number   // Maximum value to generate for the blue channel  - default: 255
+    r?: number      // Explicitly set the value for the red channel    - default: undefined
+    g?: number      // Explicitly set the value for the blue channel   - default: undefined
+    b?: number      // Explicitly set the value for the green channel  - default: undefined
+    a?: number      // Explicitly set the value for the alpha channel  - default: undefined
+}
+
+type genNumOptions = {
+    min?: number      // minimum number                                - default: 0
+    max?: number      // maximum number                                - default: 1
+    isInt?: boolean   // false for float, true for int                 - default: false
+    clamp?: number    // clamp num to this many decimal places (0-16)  - default: 2
+}
+
+type convertOptions = {
+    color: Color
+    to?: ColorTypes
+}
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+        <script src="search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.3.1
+Build Date UTC : 2023-03-23 20:35:13.243711+00:00
+-->

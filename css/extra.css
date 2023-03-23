@@ -1,0 +1,14 @@
+.admonition.tip {
+    color: #000000;
+    background-color: #ddf7d9;
+    border-color: #bce8f1;
+  }
+.admonition.note {
+  color: #000000;
+}
+footer.col-md-12 {
+  visibility: hidden;
+}
+.hljs {
+  border-radius: 5px;
+}
