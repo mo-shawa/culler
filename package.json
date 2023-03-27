@@ -1,6 +1,6 @@
 {
 	"name": "culler",
-	"version": "0.4.0",
+	"version": "0.4.1",
 	"description": "Blazingly tiny, 0 dependency package color utility library.",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",

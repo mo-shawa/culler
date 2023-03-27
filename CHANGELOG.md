@@ -1,5 +1,11 @@
 # culler
 
+## 0.4.1
+
+### Patch Changes
+
+- Move documentation to dedicated page (https://shawa.dev/culler)
+
 ## 0.4.0
 
 ### Minor Changes
