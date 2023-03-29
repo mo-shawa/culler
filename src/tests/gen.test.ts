@@ -3,6 +3,9 @@ import culler from "../index"
 const rgbaPattern =
 	/^rgba\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3}),\s*(\d*(?:\.\d+)?)\)$/
 
+const rgbPattern =
+	/^rgba\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3}),\s*(\d*(?:\.\d+)?)\)$/
+
 const hexPattern = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$/
 
 describe("gen", () => {
