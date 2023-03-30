@@ -37,7 +37,6 @@ export function convert(color: Color, to: ColorTypes = "rgb"): Color {
 		const string = color.trim().substring(1)
 
 		const stringArray = string.match(/.{1,2}/g)!
-		console.log(stringArray)
 
 		const base10Array: number[] = stringArray.map((str: string) =>
 			parseInt(str, 16)
