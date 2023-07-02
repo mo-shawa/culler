@@ -1,5 +1,11 @@
 # culler
 
+## 0.4.2
+
+### Patch Changes
+
+- remove debug logs
+
 ## 0.4.1
 
 ### Patch Changes
