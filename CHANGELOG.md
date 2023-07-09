@@ -1,5 +1,11 @@
 # culler
 
+## 0.5.0
+
+### Minor Changes
+
+- Expose types to end users + add prettier
+
 ## 0.4.3
 
 ### Patch Changes
