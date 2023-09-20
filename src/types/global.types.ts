@@ -8,6 +8,8 @@ export type Color = RGB | RGBA | HEX | CSSNamedColor
 
 export type ColorTypes = 'rgb' | 'rgba' | 'hex'
 
+export type ColorTuple<T> = [T, T, T, T]
+
 export type ConvertOptions = {
   color: Color
   to?: ColorTypes
