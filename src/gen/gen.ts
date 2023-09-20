@@ -1,7 +1,7 @@
 import type { GenOptions, Color } from '../types/global.types'
 import { genNum } from '../utils'
 
-export function gen(userOptions: GenOptions = {}): Color {
+export function gen(userOptions: GenOptions = {}): Color | void {
   const defaultOptions: GenOptions = {
     type: 'rgba',
     minR: 0,
@@ -61,6 +61,4 @@ export function gen(userOptions: GenOptions = {}): Color {
 
     return output
   }
-
-  return `rgb(${r}, ${g}, ${b})`
 }
