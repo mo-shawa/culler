@@ -23,3 +23,16 @@ export default {
   convert,
   genNum,
 }
+
+// const color = gen({
+//   type: 'rgb',
+//   minR: 220,
+//   minG: 220,
+//   minB: 220,
+// })
+
+// console.log(
+//   '%c<a href="https://npmjs.com/package/culler">culler</a>',
+//   `color: ${color}; font-size: 2rem; font-weight: bold; background: #000; padding: 0.5rem 1rem;
+//   border-radius: 0.5rem;`,
+// )

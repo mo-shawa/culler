@@ -24,7 +24,6 @@ describe('gen', () => {
       const sut = culler.gen
 
       const actual = sut({ type: 'hex' })
-      console.log(actual)
 
       expect(actual).toMatch(hexPattern)
     })

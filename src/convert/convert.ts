@@ -11,6 +11,7 @@ export function convert(color: Color, to: ColorTypes = 'rgb'): Color {
 
     const stringArray = string.split(',')
     const numberArray = stringArray.map((str: string) => Number(str))
+    console.log([numberArray])
 
     if (to === 'hex') {
       numberArray[3] = Math.floor(numberArray[3]! * 255)
@@ -56,7 +57,8 @@ export function convert(color: Color, to: ColorTypes = 'rgb'): Color {
     }
 
     if (to === 'rgba') {
-      const [r, g, b, a]: any = base10Array
+      let [r, g, b, a]: any = base10Array
+      a === undefined ? (a = 1) : a
       return `rgba(${r}, ${g}, ${b}, ${a})`
     }
   }

@@ -12,7 +12,7 @@
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "lint": "tsc",
     "dry-run": "npm run build && npm publish --dry-run",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll --coverage"
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,8 @@
     "typescript": "^4.9.5"
   },
   "keywords": [
+    "culler",
+    "ts",
     "TypeScript",
     "utility",
     "library",
