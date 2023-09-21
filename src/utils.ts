@@ -1,4 +1,4 @@
-import type { GenNumOptions, Color, ColorTypes } from './types/global.types'
+import type { GenNumOptions, Color, ColorTypes, ColorTuple } from './types/global.types'
 
 export function genNum(userOptions: GenNumOptions = {}): number {
   const defaultOptions: GenNumOptions = {
@@ -21,16 +21,11 @@ export function genNum(userOptions: GenNumOptions = {}): number {
   return num
 }
 
-export function preserveTransparency(
-  r: number,
-  g: number,
-  b: number,
-  a: number,
-): number[] {
+export function preserveTransparency(r: number, g: number, b: number, a: number): ColorTuple<number> {
   const r2 = Math.floor((1 - a) * 255 + a * r)
   const g2 = Math.floor((1 - a) * 255 + a * g)
   const b2 = Math.floor((1 - a) * 255 + a * b)
-  return [r2, g2, b2]
+  return [r2, g2, b2, 1]
 }
 
 export function getColorFormat(color: Color): ColorTypes | void {

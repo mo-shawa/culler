@@ -8,7 +8,7 @@ export type Color = RGB | RGBA | HEX | CSSNamedColor
 
 export type ColorTypes = 'rgb' | 'rgba' | 'hex'
 
-export type ColorTuple<T> = [T, T, T, T]
+export type ColorTuple<T extends number | string> = [T, T, T, T]
 
 export type ConvertOptions = {
   color: Color
@@ -30,12 +30,7 @@ export type GenOptions = {
   a?: number
 }
 
-export type ApplyQuery =
-  | HTMLElement
-  | HTMLCollection
-  | NodeList
-  | NodeListOf<Element>
-  | string
+export type ApplyQuery = HTMLElement | HTMLCollection | NodeList | NodeListOf<Element> | string
 
 export type GenNumOptions = {
   min?: number

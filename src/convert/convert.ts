@@ -27,8 +27,8 @@ export function convert(color: Color, to: ColorTypes = 'rgb'): Color {
     }
 
     if (to === 'rgb') {
-      const [r, g, b, a] = numberArray // no type assertion for destructuring :(
-      const [r2, g2, b2] = preserveTransparency(r, g, b, a) as ColorTuple<number>
+      const [r, g, b, a] = numberArray
+      const [r2, g2, b2] = preserveTransparency(r, g, b, a)
       return `rgb(${r2}, ${g2}, ${b2})`
     }
   }
