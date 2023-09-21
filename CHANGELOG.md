@@ -1,5 +1,11 @@
 # culler
 
+## 0.5.1
+
+### Patch Changes
+
+- b25816c: improve testing coverage and typing
+
 ## 0.5.0
 
 ### Minor Changes
