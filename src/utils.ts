@@ -21,7 +21,7 @@ export function genNum(userOptions: GenNumOptions = {}): number {
   return num
 }
 
-export function preserveTransparency(r: number, g: number, b: number, a: number): ColorTuple<number> {
+export function calculatePreservedTransparency(r: number, g: number, b: number, a: number): ColorTuple<number> {
   const r2 = Math.floor((1 - a) * 255 + a * r)
   const g2 = Math.floor((1 - a) * 255 + a * g)
   const b2 = Math.floor((1 - a) * 255 + a * b)

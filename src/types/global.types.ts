@@ -1,8 +1,8 @@
 import { CSSNamedColor } from 'css-color-types'
 
-type RGB = `rgb(${number}, ${number}, ${number})`
-type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`
-type HEX = `#${string}`
+export type RGB = `rgb(${number}, ${number}, ${number})`
+export type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`
+export type HEX = `#${string}`
 
 export type Color = RGB | RGBA | HEX | CSSNamedColor
 
@@ -10,10 +10,16 @@ export type ColorTypes = 'rgb' | 'rgba' | 'hex'
 
 export type ColorTuple<T extends number | string> = [T, T, T, T]
 
-export type ConvertOptions = {
-  color: Color
-  to?: ColorTypes
-}
+export type ConvertOptions =
+  | {
+      color: Color
+      to?: Omit<ColorTypes, 'rgb'>
+    }
+  | {
+      color: Color
+      to: 'rgb'
+      preserveTransparency?: boolean
+    }
 
 export type GenOptions = {
   type?: ColorTypes
@@ -30,7 +36,7 @@ export type GenOptions = {
   a?: number
 }
 
-export type ApplyQuery = HTMLElement | HTMLCollection | NodeList | NodeListOf<Element> | string
+export type ApplyQuery = Element | HTMLElement | HTMLCollection | NodeList | NodeListOf<Element> | string
 
 export type GenNumOptions = {
   min?: number

@@ -1,7 +1,7 @@
 import type { GenOptions, Color } from '../types/global.types'
 import { genNum } from '../utils'
 
-export function gen(userOptions: GenOptions = {}): Color | void {
+export function gen(userOptions: GenOptions = {}): Color {
   const defaultOptions: GenOptions = {
     type: 'rgba',
     minR: 0,
@@ -15,20 +15,7 @@ export function gen(userOptions: GenOptions = {}): Color | void {
 
   const options: GenOptions = Object.assign(defaultOptions, userOptions)
 
-  const {
-    type,
-    minR,
-    minG,
-    minB,
-    maxR,
-    maxG,
-    maxB,
-    alpha,
-    r: setR,
-    g: setG,
-    b: setB,
-    a: setA,
-  } = options
+  const { type, minR, minG, minB, maxR, maxG, maxB, alpha, r: setR, g: setG, b: setB, a: setA } = options
 
   const [r, g, b, a] = [
     setR !== undefined ? setR : genNum({ min: minR, max: maxR, isInt: true }),
@@ -55,10 +42,10 @@ export function gen(userOptions: GenOptions = {}): Color | void {
       a.toString(16).padStart(2, '0'),
     ]
 
-    let output: Color = alpha
-      ? `#${hexR}${hexG}${hexB}${hexA}`
-      : `#${hexR}${hexG}${hexB}`
+    let output: Color = alpha ? `#${hexR}${hexG}${hexB}${hexA}` : `#${hexR}${hexG}${hexB}`
 
     return output
   }
+
+  return 'rgb(0, 0, 0)' // default
 }

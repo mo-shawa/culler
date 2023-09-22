@@ -1,5 +1,11 @@
 # culler
 
+## 0.6.0
+
+### Minor Changes
+
+- 4acbd48: refactor convert, various bugfixes and add convert tests
+
 ## 0.5.1
 
 ### Patch Changes
