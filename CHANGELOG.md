@@ -1,5 +1,11 @@
 # culler
 
+## 0.6.1
+
+### Patch Changes
+
+- forgot to build lol (CI coming soon)
+
 ## 0.6.0
 
 ### Minor Changes
