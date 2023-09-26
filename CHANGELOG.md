@@ -1,5 +1,20 @@
 # culler
 
+## 0.7.0
+
+### Minor Changes
+
+- 276eaf9: fix CI hanging
+- 04accf0: testing Github Actions CI
+
+### Patch Changes
+
+- c964321: trigger publish workflow after more config
+- 7f6ec66: Add NPM token to pubslish workflow
+- 8664941: trigger publish workflow after changing github actions config
+- 437605a: Add github token to publish workflow
+- 04accf0: Prevent unecessary loop on constrcuting hex array
+
 ## 0.6.1
 
 ### Patch Changes
