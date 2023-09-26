@@ -1,5 +1,11 @@
 # culler
 
+## 0.7.1
+
+### Patch Changes
+
+- 808a45a: add release script for publish action
+
 ## 0.7.0
 
 ### Minor Changes
