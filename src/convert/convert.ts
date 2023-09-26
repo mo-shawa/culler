@@ -1,9 +1,10 @@
-import { apply } from '../apply/apply'
 import type { Color, ColorTypes, ColorTuple } from '../types/global.types'
 import { getColorFormat, calculatePreservedTransparency } from '../utils'
 
 export function convert(color: Color, to: ColorTypes = 'rgb', preserveTransparency = true): Color {
   const format = getColorFormat(color)
+
+  if (format === to) return color
   // TODO: break this up into smaller functions and add tests **
   switch (format) {
     case 'rgb':
@@ -98,10 +99,12 @@ function contstructNumberArray(color: Color) {
 
 function constructHexArray(numberArray: ColorTuple<number>) {
   const hexArray = numberArray.map((num: number) => num.toString(16)) as ColorTuple<string>
-
-  for (let i = 0; i < hexArray.length; i++) {
-    if (hexArray[i]!.toString().length < 2) {
-      hexArray[i] = [0, hexArray[i]].join('')
+  const hexArrayLength = hexArray.join('').length
+  if (hexArrayLength !== 6 && hexArrayLength !== 8) {
+    for (let i = 0; i < hexArray.length; i++) {
+      if (hexArray[i]!.toString().length < 2) {
+        hexArray[i] = [0, hexArray[i]].join('')
+      }
     }
   }
 
