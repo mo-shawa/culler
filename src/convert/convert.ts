@@ -1,5 +1,5 @@
-import type { Color, ColorTypes, ColorTuple } from '../types/global.types'
-import { getColorFormat, calculatePreservedTransparency } from '../utils'
+import type { Color, ColorTypes, ColorTuple, RGB, RGBA, HEX } from '../types/global.types'
+import { getColorFormat, calculatePreservedTransparency, assertNever } from '../utils'
 
 export function convert(color: Color, to: ColorTypes = 'rgb', preserveTransparency = true): Color {
   const format = getColorFormat(color)
@@ -8,17 +8,17 @@ export function convert(color: Color, to: ColorTypes = 'rgb', preserveTransparen
   // TODO: break this up into smaller functions and add tests **
   switch (format) {
     case 'rgb':
-      return convertRGB(color, to)
+      return convertRGB(color as RGB, to)
     case 'rgba':
-      return convertRGBA(color, to, preserveTransparency)
+      return convertRGBA(color as RGBA, to, preserveTransparency)
     case 'hex':
-      return convertHex(color, to, preserveTransparency)
+      return convertHex(color as HEX, to, preserveTransparency)
     default:
-      return color
+      return assertNever(format)
   }
 }
 
-function convertRGB(color: Color, to: ColorTypes): Color {
+function convertRGB(color: RGB, to: ColorTypes): Color {
   const numberArray = contstructNumberArray(color)
 
   if (to === 'rgba') {
@@ -35,7 +35,7 @@ function convertRGB(color: Color, to: ColorTypes): Color {
   return color
 }
 
-function convertRGBA(color: Color, to: ColorTypes, preserveTransparency: boolean): Color {
+function convertRGBA(color: RGBA, to: ColorTypes, preserveTransparency: boolean): Color {
   const numberArray = contstructNumberArray(color)
 
   if (to === 'hex') {
@@ -56,7 +56,7 @@ function convertRGBA(color: Color, to: ColorTypes, preserveTransparency: boolean
   return color // if user tries to convert a color that is already in the desired format
 }
 
-function convertHex(color: Color, to: ColorTypes, preserveTransparency: boolean): Color {
+function convertHex(color: HEX, to: ColorTypes, preserveTransparency: boolean): Color {
   const string = color.trim().substring(1)
 
   const stringArray = string.match(/.{1,2}/g)!

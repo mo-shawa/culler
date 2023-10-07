@@ -47,5 +47,5 @@ export function gen(userOptions: GenOptions = {}): Color {
     return output
   }
 
-  return 'rgb(0, 0, 0)' // default
+  return 'rgb(0, 0, 0)'
 }

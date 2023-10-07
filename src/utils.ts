@@ -28,10 +28,15 @@ export function calculatePreservedTransparency(r: number, g: number, b: number, 
   return [r2, g2, b2, 1]
 }
 
-export function getColorFormat(color: Color): ColorTypes | void {
+export function getColorFormat(color: Color): ColorTypes {
   if (color.indexOf('#') > -1) return 'hex'
   if (color.substring(0, 3).includes('rgb')) {
     if (color.charAt(3) === 'a') return 'rgba'
     return 'rgb'
   }
+  return 'hex'
+}
+
+export function assertNever(x: never): never {
+  throw new Error('Unexpected argument: ' + x)
 }
