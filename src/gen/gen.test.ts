@@ -1,7 +1,6 @@
 import culler from '../index'
 
-const rgbaPattern =
-  /^rgba\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3}),\s*(\d*(?:\.\d+)?)\)$/
+const rgbaPattern = /^rgba\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3}),\s*(\d*(?:\.\d+)?)\)$/
 
 const rgbPattern = /^rgb\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})\)$/
 
@@ -66,6 +65,20 @@ describe('gen', () => {
       const actual = sut({ r: 255, g: 255, b: 255, a: 0.5 })
 
       expect(actual).toBe('rgba(255, 255, 255, 0.5)')
+    })
+  })
+
+  describe('given range', () => {
+    it('should return rgba string with values within range', () => {
+      const sut = culler.gen
+
+      const actual1 = sut({ range: [0, 255] })
+      const actual2 = sut({ range: [220, 225] })
+      const actual3 = sut({ range: [22, 25] })
+
+      expect(actual1).toMatch(rgbaPattern)
+      expect(actual2).toMatch(rgbaPattern)
+      expect(actual3).toMatch(rgbaPattern)
     })
   })
 })

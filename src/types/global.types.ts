@@ -34,6 +34,7 @@ export type GenOptions = {
   g?: number
   b?: number
   a?: number
+  range?: [number, number]
 }
 
 export type ApplyQuery = Element | HTMLElement | HTMLCollection | NodeList | NodeListOf<Element> | string

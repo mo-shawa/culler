@@ -15,14 +15,23 @@ export function gen(userOptions: GenOptions = {}): Color {
 
   const options: GenOptions = Object.assign(defaultOptions, userOptions)
 
-  const { type, minR, minG, minB, maxR, maxG, maxB, alpha, r: setR, g: setG, b: setB, a: setA } = options
+  const { type, minR, minG, minB, maxR, maxG, maxB, alpha, r: setR, g: setG, b: setB, a: setA, range } = options
 
-  const [r, g, b, a] = [
-    setR !== undefined ? setR : genNum({ min: minR, max: maxR, isInt: true }),
-    setG !== undefined ? setG : genNum({ min: minG, max: maxG, isInt: true }),
-    setB !== undefined ? setB : genNum({ min: minB, max: maxB, isInt: true }),
-    setA !== undefined ? setA : alpha ? genNum({ isInt: false }) : 1,
-  ]
+  const getRange = () => {
+    if (!range || range[0] < 0 || range[1] > 255) throw new Error('Range values must be between 0 and 255')
+    if (range[0] > range[1]) throw new Error('Range values must be in ascending order')
+
+    return genNum({ min: range![0], max: range![1], isInt: true })
+  }
+
+  const [r, g, b, a] = range
+    ? [getRange(), getRange(), getRange(), 1]
+    : [
+        setR !== undefined ? setR : genNum({ min: minR, max: maxR, isInt: true }),
+        setG !== undefined ? setG : genNum({ min: minG, max: maxG, isInt: true }),
+        setB !== undefined ? setB : genNum({ min: minB, max: maxB, isInt: true }),
+        setA !== undefined ? setA : alpha ? genNum({ isInt: false }) : 1,
+      ]
 
   if (type === 'rgb') return `rgb(${r}, ${g}, ${b})`
 
