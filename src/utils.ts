@@ -14,7 +14,7 @@ export function genNum(userOptions: GenNumOptions = {}): number {
 
   let num = Math.random() * (max! - min!) + min!
 
-  if (isInt) num = Math.floor(num)
+  if (isInt) num = Math.round(num)
 
   if (!isInt && clamp !== undefined) num = parseFloat(num.toFixed(clamp))
 

@@ -75,10 +75,14 @@ describe('gen', () => {
       const actual1 = sut({ range: [0, 255] })
       const actual2 = sut({ range: [220, 225] })
       const actual3 = sut({ range: [22, 25] })
+      const actual4 = sut({ range: [254, 255] })
+
+      console.log({ actual4 })
 
       expect(actual1).toMatch(rgbaPattern)
       expect(actual2).toMatch(rgbaPattern)
       expect(actual3).toMatch(rgbaPattern)
+      expect(actual4).toMatch(rgbaPattern)
     })
   })
 })
