@@ -12,3 +12,18 @@ NOTE: `culler` is in early active development, and will see many breaking change
 - Convert Color values between formats, including from semi-transparent to solid colors using `convert()`
 - Provide a clean syntax to apply a color to a CSS selector string, HTML Element, or an iterable containing HTML Elements with `apply()`
 - It's TINY. This library is `significantly` smaller than 1 GB 🔥
+
+### Todo
+- [x] CI
+- [x] Unit tests
+  - [x] `convert()`
+  - [x] `gen()`
+- [ ] DOM testing
+  - [ ]  `apply()`
+- [ ] Generate gradients
+- [ ] Presets for `gen()`
+  - [ ] e.g. `gen({preset: "pastel"})`
+- [ ] Generate color palettes 
+- [ ] Debug
+    - [ ] Type exports inferred as `any` (e.g. `Color`)
+  
