@@ -1,5 +1,11 @@
 # culler
 
+## 0.7.2
+
+### Patch Changes
+
+- Include CSS named colors natively instead of through third party package
+
 ## 0.7.1
 
 ### Patch Changes
